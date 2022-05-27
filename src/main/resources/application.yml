@@ -3,3 +3,8 @@ server:
 spring:
   application:
     name: DisasterRecovery
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/disaster_recovery
+    username: root
+    password: root
