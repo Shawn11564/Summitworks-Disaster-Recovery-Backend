@@ -9,4 +9,8 @@ public enum UserRole {
 	ADMIN,
 	CONTRACTOR;
 
+	public static UserRole matchRole(String role) {
+		return UserRole.valueOf(role.toUpperCase());
+	}
+
 }

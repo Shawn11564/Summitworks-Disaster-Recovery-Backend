@@ -3,7 +3,6 @@ package com.summitworks.disasterrecovery.services;
 import com.summitworks.disasterrecovery.models.users.User;
 import com.summitworks.disasterrecovery.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,8 +16,7 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
 
 	private final UserRepository userRepository;
-	@Autowired
-	private PasswordEncoder encoder;
+	private final PasswordEncoder encoder;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
