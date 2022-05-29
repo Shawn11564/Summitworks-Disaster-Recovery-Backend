@@ -1,0 +1,195 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 266338304 bytes for Failed to commit area from 0x0000000702600000 to 0x0000000712400000 of length 266338304.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./src/hotspot/os/windows/os_windows.cpp:3301), pid=19168, tid=12820
+#
+# JRE version:  (11.0.11+9) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.11+9, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dmaven.home=EMBEDDED -Dclassworlds.conf=C:\Users\Matt1\eclipse-workspace4\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf11888243593912903492.tmp -Dmaven.multiModuleProjectDirectory=C:\Users\Matt1\SummitWorks\Project imp\Backend_proj\Summitworks-Disaster-Recovery-Backend -Dfile.encoding=Cp1252 org.codehaus.plexus.classworlds.launcher.Launcher -B clean install
+
+Host: Intel(R) Core(TM) i5-4670 CPU @ 3.40GHz, 4 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1706)
+Time: Sat May 28 21:50:23 2022 Eastern Daylight Time elapsed time: 0.009729 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002c1fec9b800):  JavaThread "Unknown thread" [_thread_in_vm, id=12820, stack(0x000000e9ba500000,0x000000e9ba600000)]
+
+Stack: [0x000000e9ba500000,0x000000e9ba600000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5f7e5a]
+V  [jvm.dll+0x77ff2e]
+V  [jvm.dll+0x7815ff]
+V  [jvm.dll+0x781cc3]
+V  [jvm.dll+0x247408]
+V  [jvm.dll+0x5f500a]
+V  [jvm.dll+0x5e9b05]
+V  [jvm.dll+0x2fc26c]
+V  [jvm.dll+0x2fc0f2]
+V  [jvm.dll+0x300da6]
+V  [jvm.dll+0x34586f]
+V  [jvm.dll+0x3452a0]
+V  [jvm.dll+0x2d9498]
+V  [jvm.dll+0x2da5e6]
+V  [jvm.dll+0x75b577]
+V  [jvm.dll+0x75ccff]
+V  [jvm.dll+0x3525e9]
+V  [jvm.dll+0x73e660]
+V  [jvm.dll+0x3b9ddf]
+V  [jvm.dll+0x3bc2e1]
+C  [jli.dll+0x520b]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x52651]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000002c1fd213790, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000002c1fecb4000 GCTaskThread "GC Thread#0" [stack: 0x000000e9ba600000,0x000000e9ba700000] [id=16528]
+  0x000002c1fed0f800 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000e9ba700000,0x000000e9ba800000] [id=2000]
+  0x000002c1fed11800 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000e9ba800000,0x000000e9ba900000] [id=16520]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff44128b57]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000002c1fec96fe0] Heap_lock - owner thread: 0x000002c1fec9b800
+
+Heap address: 0x0000000702600000, size: 4058 MB, Compressed Oops mode: Non-zero based: 0x0000000702600000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.006 Loaded shared library C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff7c4130000 - 0x00007ff7c413d000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\javaw.exe
+0x00007fff9c930000 - 0x00007fff9cb25000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007fff9b3c0000 - 0x00007fff9b47d000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007fff9a240000 - 0x00007fff9a50d000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007fff9a5d0000 - 0x00007fff9a6d0000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007fff8c030000 - 0x00007fff8c045000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\VCRUNTIME140.dll
+0x00007fff8e670000 - 0x00007fff8e687000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\jli.dll
+0x00007fff9b010000 - 0x00007fff9b1b0000 	C:\WINDOWS\System32\USER32.dll
+0x00007fff82c80000 - 0x00007fff82f1a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007fff9a040000 - 0x00007fff9a062000 	C:\WINDOWS\System32\win32u.dll
+0x00007fff9add0000 - 0x00007fff9adfa000 	C:\WINDOWS\System32\GDI32.dll
+0x00007fff9b1b0000 - 0x00007fff9b24e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007fff9a6d0000 - 0x00007fff9a7db000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007fff9a890000 - 0x00007fff9a92d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007fff9b260000 - 0x00007fff9b290000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007fff71bc0000 - 0x00007fff71c5b000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\msvcp140.dll
+0x00007fff43e40000 - 0x00007fff4498b000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\server\jvm.dll
+0x00007fff9b290000 - 0x00007fff9b33e000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007fff9b9d0000 - 0x00007fff9ba6c000 	C:\WINDOWS\System32\sechost.dll
+0x00007fff9aac0000 - 0x00007fff9abe5000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007fff9b250000 - 0x00007fff9b258000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007fff7cb80000 - 0x00007fff7cb89000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007fff9b340000 - 0x00007fff9b3ab000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007fff91770000 - 0x00007fff9177a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007fff8b720000 - 0x00007fff8b747000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007fff97f20000 - 0x00007fff97f32000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007fff97770000 - 0x00007fff97780000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\verify.dll
+0x00007fff8b470000 - 0x00007fff8b654000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007fff8a430000 - 0x00007fff8a45c000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007fff9a540000 - 0x00007fff9a5c2000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007fff95aa0000 - 0x00007fff95ac8000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\java.dll
+0x00007fff97760000 - 0x00007fff9776a000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\jimage.dll
+0x00007fff8e650000 - 0x00007fff8e667000 	C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin\server
+
+VM Arguments:
+jvm_args: -Dmaven.home=EMBEDDED -Dclassworlds.conf=C:\Users\Matt1\eclipse-workspace4\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf11888243593912903492.tmp -Dmaven.multiModuleProjectDirectory=C:\Users\Matt1\SummitWorks\Project imp\Backend_proj\Summitworks-Disaster-Recovery-Backend -Dfile.encoding=Cp1252 
+java_command: org.codehaus.plexus.classworlds.launcher.Launcher -B clean install
+java_class_path (initial): C:\Users\Matt1\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.16.0.20210129-0849\jars\plexus-classworlds-2.6.0.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 266338304                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4255121408                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5830732                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122913754                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122913754                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\
+PATH=C:/Users/Matt1/AppData/Local/Programs/AdoptOpenJDK/jdk-11.0.11.9-hotspot/bin/client;C:/Users/Matt1/AppData/Local/Programs/AdoptOpenJDK/jdk-11.0.11.9-hotspot/bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Users\Matt\AppData\Local\Smartbar\Application\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Program Files (x86)\dotnet\;F:\Putty\;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Matt1\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin;C:\Users\Matt1\AppData\Local\Microsoft\WindowsApps;C:\Users\Matt1\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Matt1\.dotnet\tools;C:\Users\Matt1\AppData\Local\GitHubDesktop\bin;C:\Users\Matt1\AppData\Roaming\npm;C:\Users\Matt1\Desktop;
+USERNAME=Matt1
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.1706)
+OS uptime: 4 days 0:36 hours
+Hyper-V role detected
+
+CPU:total 4 (initial active 4) (4 cores per cpu, 1 threads per core) family 6 model 60 stepping 3 microcode 0x27, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, tsc, tscinvbit, bmi1, bmi2, fma
+
+Memory: 4k page, system-wide physical 16229M (6521M free)
+TotalPageFile size 17253M (AvailPageFile size 192M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 52M, peak: 306M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.11+9) for windows-amd64 JRE (11.0.11+9), built on Apr 20 2021 21:22:09 by "" with MS VC++ 15.9 (VS2017)
+
+END.
