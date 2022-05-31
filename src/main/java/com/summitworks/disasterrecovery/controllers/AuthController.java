@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+//@CrossOrigin(origin = "http://localhost:4200/")
 @RequestMapping("/api/auth")
 @AllArgsConstructor
 public class AuthController {

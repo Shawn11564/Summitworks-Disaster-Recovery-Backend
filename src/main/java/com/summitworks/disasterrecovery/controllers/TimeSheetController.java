@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.security.RolesAllowed;
 
 @RestController
+//@CrossOrigin(origin = "http://localhost:4200/")
 @AllArgsConstructor
 public class TimeSheetController {
 
