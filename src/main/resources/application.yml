@@ -5,6 +5,9 @@ spring:
     name: DisasterRecovery
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://summitworks.cjlwdcuayexf.us-east-1.rds.amazonaws.com:3306/DisasterCharts
+    username: admin
+    password: DoorOpen
   jpa:
     hibernate:
       ddl-auto: update
