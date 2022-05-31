@@ -4,9 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DiscriminatorOptions;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Time_Sheet_Approvals")
@@ -18,6 +17,8 @@ public class TimeSheetObject {
 	private int id;
 	private String contractorName;
 	private String siteCode;
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<SiteObject> siteObjects;
 	private int totalHours;
 	private String status;
 

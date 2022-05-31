@@ -1,20 +1,15 @@
 package com.summitworks.disasterrecovery.controllers;
 
-import javax.annotation.security.RolesAllowed;
-
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.summitworks.disasterrecovery.repositories.SiteObjectRepository;
-
-import lombok.AllArgsConstructor;
+import javax.annotation.security.RolesAllowed;
 
 @RestController
 @AllArgsConstructor
 public class TimeSheetController {
 
-	@GetMapping("/")
+	//@GetMapping("/")
 	@RolesAllowed("CONTRACTOR")
 	public String getSiteObjects() {
 		return "";
