@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
+
 @RestController
 @AllArgsConstructor
 public class SiteObjectController {
@@ -12,6 +14,7 @@ public class SiteObjectController {
 	private final SiteObjectRepository siteObjectRepository;
 
 	@GetMapping("/")
+	@RolesAllowed("CONTRACTOR")
 	public String getSiteObjects() {
 		return siteObjectRepository.findAll().toString();
 	}

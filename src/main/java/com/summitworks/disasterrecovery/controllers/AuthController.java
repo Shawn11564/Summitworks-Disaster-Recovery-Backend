@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ public class AuthController {
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
 	private final AuthenticationManager authenticationManager;
+	private final PasswordEncoder encoder;
 	private final JwtUtils jwtUtils;
 
 	@PostMapping("/login")
@@ -75,7 +77,7 @@ public class AuthController {
 		User user = new User(
 				registerRequest.getUsername(),
 				registerRequest.getEmail(),
-				registerRequest.getPassword()
+				encoder.encode(registerRequest.getPassword())
 		);
 		user.setRoles(
 				new HashSet<>(List.of(

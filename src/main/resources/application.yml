@@ -8,3 +8,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+summitworks:
+  app:
+    jwtSecret: summitworks
+    jwtExpirationMs: 86400000
