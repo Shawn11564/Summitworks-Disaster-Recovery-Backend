@@ -17,4 +17,8 @@ public class TimeSheetService {
 		return timeSheetRepository.getAllTimeSheetObjects();
 	}
 
+	public TimeSheetObject getTimesheet(long id) {
+		return timeSheetRepository.getReferenceById(id);
+	}
+
 }

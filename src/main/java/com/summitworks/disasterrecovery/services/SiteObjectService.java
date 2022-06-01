@@ -2,17 +2,23 @@ package com.summitworks.disasterrecovery.services;
 
 import com.summitworks.disasterrecovery.models.objects.SiteObject;
 import com.summitworks.disasterrecovery.repositories.SiteObjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@AllArgsConstructor
 public class SiteObjectService {
 
 	private final SiteObjectRepository siteObjectRepository;
 
-	@Autowired
-	public SiteObjectService(SiteObjectRepository siteObjectRepository) {
-		this.siteObjectRepository = siteObjectRepository;
+	public List<SiteObject> getAll() {
+		return siteObjectRepository.findAll();
+	}
+
+	public SiteObject getSiteObject(String id) {
+		return siteObjectRepository.getReferenceById(id);
 	}
 
 	public void saveSiteObject(SiteObject siteObject) {

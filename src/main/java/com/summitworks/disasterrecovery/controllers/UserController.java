@@ -8,24 +8,31 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
+//@RolesAllowed("ADMIN")
 @AllArgsConstructor
 public class UserController {
 
 	private final UserService userService;
 
 	@GetMapping("/all")
-	@RolesAllowed({"ADMIN", "CONTRACTOR"})
+	@RolesAllowed("ADMIN")
 	public List<User> getUsers() {
 		return userService.getAll();
 	}
 
-	@DeleteMapping("/{id}")
-	@RolesAllowed({"ADMIN", "CONTRACTOR"})
+	@DeleteMapping("/delete/{id}")
+	@RolesAllowed("ADMIN")
 	public void deleteUser(@PathVariable("id") String userId) {
-		userService.deleteUser(Long.valueOf(userId));
+		userService.deleteUser(Long.parseLong(userId));
+	}
+
+	@PutMapping("/admin/{id}")
+	@RolesAllowed("ADMIN")
+	public void makeAdmin(@PathVariable("id") String userId) {
+		userService.makeAdmin(Long.parseLong(userId));
 	}
 
 }
