@@ -20,5 +20,9 @@ public class TimeSheetService {
 	public TimeSheetObject getTimesheet(long id) {
 		return timeSheetRepository.getReferenceById(id);
 	}
+	
+	public void saveTimeSheet (TimeSheetObject timeSheet) {
+		timeSheetRepository.save(timeSheet);
+	}
 
 }
