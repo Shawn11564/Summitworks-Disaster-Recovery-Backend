@@ -43,7 +43,7 @@ public class TimeSheetObject {
 				", status='" + status + '\'' +
 				'}';
 	}
-	public TimeSheetObject (int id, String contractorName, String sitdeCode, int totalHours, String status){
+	public TimeSheetObject (int id, String contractorName, String siteCode, int totalHours, String status){
 		this.id = id;
 		this.contractorName = contractorName;
 		this.siteCode = siteCode;
