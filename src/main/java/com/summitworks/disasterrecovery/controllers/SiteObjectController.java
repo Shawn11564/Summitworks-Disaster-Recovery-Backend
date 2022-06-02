@@ -1,7 +1,10 @@
 package com.summitworks.disasterrecovery.controllers;
 
 import com.summitworks.disasterrecovery.controllers.requests.SiteObjectRequest;
+import com.summitworks.disasterrecovery.controllers.responses.MessageResponse;
 import com.summitworks.disasterrecovery.models.objects.SiteObject;
+import com.summitworks.disasterrecovery.models.objects.impl.Job;
+import com.summitworks.disasterrecovery.models.objects.impl.Machine;
 import com.summitworks.disasterrecovery.services.SiteObjectService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +29,46 @@ public class SiteObjectController {
 	}
 
 	@GetMapping("/object/{id}")
+	@RolesAllowed({"CONTRACTOR", "ADMIN"})
 	public SiteObject getSiteObject(@PathVariable("id") String objectId) {
 		return siteObjectService.getSiteObject(objectId);
 	}
 
+	@DeleteMapping("/delete/{id}")
+	@RolesAllowed({"CONTRACTOR", "ADMIN"})
+	public void deleteSiteObject(@PathVariable("id") String objectId) {
+		siteObjectService.deleteSiteObject(objectId);
+	}
+
 	@PostMapping("/create")
 	public ResponseEntity<?> createSiteObject(@Valid @RequestBody SiteObjectRequest siteObjectRequest) {
-		return null;
+		if (siteObjectService.existsByCode(siteObjectRequest.getCode())) {
+			return ResponseEntity.badRequest()
+					.body(new MessageResponse("Error: Object code is already taken!"));
+		}
+
+		SiteObject siteObject;
+
+		if (siteObjectRequest.getType().equalsIgnoreCase("job")) {
+			siteObject = new Job(
+					siteObjectRequest.getCode(),
+					1,
+					siteObjectRequest.getDescription(),
+					Double.parseDouble(siteObjectRequest.getHourlyRate()),
+					Integer.parseInt(siteObjectRequest.getMaxHoursPerDay())
+			);
+		} else {
+			siteObject = new Machine(
+					siteObjectRequest.getCode(),
+					2,
+					siteObjectRequest.getDescription(),
+					Double.parseDouble(siteObjectRequest.getHourlyRate()),
+					Integer.parseInt(siteObjectRequest.getMaxHoursPerDay())
+			);
+		}
+		siteObjectService.saveSiteObject(siteObject);
+
+		return ResponseEntity.ok(new MessageResponse("Site object saved!"));
 	}
 
 }

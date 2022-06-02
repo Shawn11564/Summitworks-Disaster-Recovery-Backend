@@ -25,4 +25,12 @@ public class SiteObjectService {
 		siteObjectRepository.save(siteObject);
 	}
 
+	public void deleteSiteObject(String id) {
+		siteObjectRepository.deleteById(id);
+	}
+
+	public boolean existsByCode(String code) {
+		return siteObjectRepository.existsById(code);
+	}
+
 }

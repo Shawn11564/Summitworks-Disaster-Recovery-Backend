@@ -12,12 +12,22 @@ public class SiteObjectRequest {
 	@NotBlank
 	private String code;
 	@NotBlank
-	private int type;
+	private String type;
 	@NotBlank
 	private String description;
 	@NotBlank
-	private double hourlyRate;
+	private String hourlyRate;
 	@NotBlank
-	private int maxHoursPerDay;
+	private String maxHoursPerDay;
 
+	@Override
+	public String toString() {
+		return "SiteObjectRequest{" +
+				"code='" + code + '\'' +
+				", type='" + type + '\'' +
+				", description='" + description + '\'' +
+				", hourlyRate=" + hourlyRate +
+				", maxHoursPerDay=" + maxHoursPerDay +
+				'}';
+	}
 }
