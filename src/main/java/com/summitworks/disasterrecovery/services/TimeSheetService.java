@@ -17,12 +17,20 @@ public class TimeSheetService {
 		return timeSheetRepository.getAllTimeSheetObjects();
 	}
 
-	public TimeSheetObject getTimesheet(long id) {
+	public TimeSheetObject getTimesheet(int id) {
 		return timeSheetRepository.getReferenceById(id);
 	}
 	
-	public void saveTimeSheet (TimeSheetObject timeSheet) {
+	public void saveTimesheet(TimeSheetObject timeSheet) {
 		timeSheetRepository.save(timeSheet);
+	}
+
+	public void deleteTimesheet(int id) {
+		timeSheetRepository.deleteById(id);
+	}
+
+	public boolean existsByCode(int code) {
+		return timeSheetRepository.existsById(code);
 	}
 
 }

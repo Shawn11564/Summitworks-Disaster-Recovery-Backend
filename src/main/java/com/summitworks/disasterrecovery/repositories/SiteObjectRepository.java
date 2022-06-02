@@ -18,4 +18,6 @@ public interface SiteObjectRepository extends JpaRepository<SiteObject, String> 
 	@Query(value = "SELECT * from Site_code where type = 2", nativeQuery = true)
 	List<Machine> getAllMachines();
 
+	List<SiteObject> findAllByCode(String code);
+
 }

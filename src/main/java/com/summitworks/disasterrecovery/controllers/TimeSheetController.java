@@ -4,16 +4,14 @@ package com.summitworks.disasterrecovery.controllers;
 import com.summitworks.disasterrecovery.controllers.requests.TimeSheetRequest;
 import com.summitworks.disasterrecovery.controllers.responses.MessageResponse;
 import com.summitworks.disasterrecovery.models.objects.TimeSheetObject;
-import com.summitworks.disasterrecovery.repositories.TimeSheetRepository;
+import com.summitworks.disasterrecovery.services.SiteObjectService;
 import com.summitworks.disasterrecovery.services.TimeSheetService;
 import lombok.AllArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,41 +21,65 @@ import java.util.List;
 @RolesAllowed({"CONTRACTOR", "ADMIN"})
 @AllArgsConstructor
 public class TimeSheetController {
-	private final TimeSheetRepository timesheetrepository;
-	private final TimeSheetService timeSheetService;
+	private final TimeSheetService timesheetService;
+	private final SiteObjectService siteObjectService;
 
 	@GetMapping("/all")
 	public List<TimeSheetObject> getTimeSheets() {
-		return timeSheetService.getAll();
+		return timesheetService.getAll();
 	}
 
 	@GetMapping("/timesheet/{id}")
 	public TimeSheetObject getTimesheet(@PathVariable("id") String sheetId) {
-		return timeSheetService.getTimesheet(Long.parseLong(sheetId));
+		return timesheetService.getTimesheet(Integer.parseInt(sheetId));
+	}
+
+	@PostMapping("/timesheet/{id}/add/{siteObjectId}")
+	public ResponseEntity<?> addSiteObject(@PathVariable("id") String sheetId, @PathVariable("siteObjectId") String siteObjectId) {
+		if (!timesheetService.existsByCode(Integer.parseInt(sheetId))) {
+			return ResponseEntity.badRequest()
+					.body(new MessageResponse("Error: Timesheet does not exist!"));
+		}
+		if (!siteObjectService.existsByCode(siteObjectId)) {
+			return ResponseEntity.badRequest()
+					.body(new MessageResponse("Error: Site object does not exist!"));
+		}
+
+		TimeSheetObject timesheet = timesheetService.getTimesheet(Integer.parseInt(sheetId));
+		timesheet.addSiteObject(siteObjectService.getSiteObject(siteObjectId));
+
+		timesheetService.saveTimesheet(timesheet);
+
+		return ResponseEntity.ok(new MessageResponse("Added site object to timesheet!"));
+	}
+
+	@DeleteMapping("/delete/{id}")
+	@RolesAllowed({"CONTRACTOR", "ADMIN"})
+	public void deleteSiteObject(@PathVariable("id") String sheetId) {
+		timesheetService.deleteTimesheet(Integer.parseInt(sheetId));
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<?> createSiteObject(@Valid @RequestBody TimeSheetRequest timesheetrequest) {
-		
-		TimeSheetObject TimeSheet = new TimeSheetObject(
+	public ResponseEntity<?> createTimesheet(@Valid @RequestBody TimeSheetRequest timesheetrequest) {
+		if (timesheetService.existsByCode(timesheetrequest.getId())) {
+			return ResponseEntity.badRequest()
+					.body(new MessageResponse("Error: Timesheet id is already taken!"));
+		}
+
+		TimeSheetObject timesheet = new TimeSheetObject(
 				timesheetrequest.getId(), 
 				timesheetrequest.getContractorName(),
 				timesheetrequest.getSiteCode(),
 				timesheetrequest.getTotalHours(), 
 				timesheetrequest.getStatus() 
-				);
-		
-//		TimeSheet.setSiteObjects(
-//				new HashSet<>(List.of(
-//				);
-		
-//		TimeSheetObject TimeSheet = new TimeSheetObjet(timesheetrequest.getCode,
-//				timesheetrequest.getHourlyRate(), timesheetrequest.getMaxHoursPerDay(), timesheetrequest.)
-//				
-//			
-//		
-//		timeSheetService.saveTimeSheet(TimeSheet);
-		timesheetrepository.save(TimeSheet);
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		);
+
+		timesheet.setSiteObjects(
+				new HashSet<>(siteObjectService.getAllBySiteCode(timesheetrequest.getSiteCode()))
+		);
+
+		timesheetService.saveTimesheet(timesheet);
+
+		return ResponseEntity.ok(new MessageResponse("Timesheet created!"));
 	}
 }

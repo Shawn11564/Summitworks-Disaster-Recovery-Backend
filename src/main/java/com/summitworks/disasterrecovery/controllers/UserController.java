@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/admin")
 //@RolesAllowed("ADMIN")
 @AllArgsConstructor
 public class UserController {
@@ -29,7 +29,7 @@ public class UserController {
 		userService.deleteUser(Long.parseLong(userId));
 	}
 
-	@PutMapping("/admin/{id}")
+	@PutMapping("/makeadmin/{id}")
 	@RolesAllowed("ADMIN")
 	public void makeAdmin(@PathVariable("id") String userId) {
 		userService.makeAdmin(Long.parseLong(userId));

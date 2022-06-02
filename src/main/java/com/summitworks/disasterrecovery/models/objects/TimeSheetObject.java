@@ -6,13 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DiscriminatorOptions;
 
-import com.summitworks.disasterrecovery.models.users.Role;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,4 +46,9 @@ public class TimeSheetObject {
 		this.totalHours = totalHours;
 		this.status = status;
 	}
+
+	public void addSiteObject(SiteObject siteObject){
+		this.siteObjects.add(siteObject);
+	}
+
 }

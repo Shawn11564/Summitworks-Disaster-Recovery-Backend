@@ -17,6 +17,10 @@ public class SiteObjectService {
 		return siteObjectRepository.findAll();
 	}
 
+	public List<SiteObject> getAllBySiteCode(String siteCode) {
+		return siteObjectRepository.findAllByCode(siteCode);
+	}
+
 	public SiteObject getSiteObject(String id) {
 		return siteObjectRepository.getReferenceById(id);
 	}

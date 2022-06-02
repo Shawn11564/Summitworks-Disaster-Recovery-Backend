@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface TimeSheetRepository extends JpaRepository<TimeSheetObject, Long> {
+public interface TimeSheetRepository extends JpaRepository<TimeSheetObject, Integer> {
 
 	@Query(value = "SELECT * from Time_Sheet_Approvals", nativeQuery = true)
 	List<TimeSheetObject> getAllTimeSheetObjects();

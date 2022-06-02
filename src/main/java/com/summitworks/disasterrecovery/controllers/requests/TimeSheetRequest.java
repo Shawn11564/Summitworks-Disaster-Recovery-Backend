@@ -1,21 +1,18 @@
 package com.summitworks.disasterrecovery.controllers.requests;
 
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
 @Setter
 public class TimeSheetRequest {
 
-	
 	@Id
 	@NotBlank
 	private int id;
@@ -28,6 +25,5 @@ public class TimeSheetRequest {
 	private int totalHours;
 	@NotBlank
 	private String status;
-	
 
 }
