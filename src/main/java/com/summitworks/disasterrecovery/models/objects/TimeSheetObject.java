@@ -7,9 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "time_sheet_approvals")
@@ -22,10 +20,10 @@ public class TimeSheetObject {
 	@Id
 	private int id;
 	private String contractorName;
-	@Max(25)
+	//@Max(25)
 	private String siteCode;
-	@OneToMany(fetch = FetchType.LAZY)
-	private Set<SiteObject> siteObjects = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	private Set<ObjectData> siteObjects = new HashSet<>();
 	private int totalHours;
 	private String status;
 
@@ -39,16 +37,20 @@ public class TimeSheetObject {
 				", status='" + status + '\'' +
 				'}';
 	}
-	public TimeSheetObject (int id, String contractorName, String siteCode, int totalHours, String status){
-		this.id = id;
+
+	public TimeSheetObject(String contractorName, String siteCode, Set<ObjectData> siteObjects) {
+		this.id = new Random().nextInt();
 		this.contractorName = contractorName;
 		this.siteCode = siteCode;
-		this.totalHours = totalHours;
-		this.status = status;
+		this.siteObjects = siteObjects;
 	}
 
-	public void addSiteObject(SiteObject siteObject){
-		this.siteObjects.add(siteObject);
+	public void addSiteObject(SiteObject siteObject, int hoursUsed) {
+		addSiteObject(siteObject.getCode(), hoursUsed);
+	}
+
+	public void addSiteObject(String siteCode, int hoursUsed) {
+		this.siteObjects.add(new ObjectData(siteCode, hoursUsed));
 	}
 
 }

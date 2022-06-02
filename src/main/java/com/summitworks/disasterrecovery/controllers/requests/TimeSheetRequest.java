@@ -1,11 +1,10 @@
 package com.summitworks.disasterrecovery.controllers.requests;
 
+import com.summitworks.disasterrecovery.controllers.requests.timesheets.SiteObjectDetails;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Id;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
@@ -13,17 +12,15 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class TimeSheetRequest {
 
-	@Id
 	@NotBlank
-	private int id;
+	private String code;
 	@NotBlank
-	private String contractorName;
-	@Max(25)
+	private String contractor;
 	@NotBlank
-	private String siteCode;
+	private String date;
 	@NotBlank
-	private int totalHours;
+	private SiteObjectDetails jobs;
 	@NotBlank
-	private String status;
+	private SiteObjectDetails machines;
 
 }

@@ -34,9 +34,10 @@ public class SiteObjectController {
 		return siteObjectService.getSiteObject(objectId);
 	}
 
-	@DeleteMapping("/delete/{id}")
-	@RolesAllowed({"CONTRACTOR", "ADMIN"})
+	@DeleteMapping("/admin/delete/{id}")
+	@RolesAllowed("ADMIN")
 	public void deleteSiteObject(@PathVariable("id") String objectId) {
+		System.out.println("Request received");
 		siteObjectService.deleteSiteObject(objectId);
 	}
 

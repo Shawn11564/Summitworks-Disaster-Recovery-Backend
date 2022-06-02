@@ -11,7 +11,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/users/admin")
-//@RolesAllowed("ADMIN")
 @AllArgsConstructor
 public class UserController {
 
