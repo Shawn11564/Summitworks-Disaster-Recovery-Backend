@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
+//@CrossOrigin(origin = "http://localhost:4200/")
 @RequestMapping("/api/auth")
 @AllArgsConstructor
 public class AuthController {
