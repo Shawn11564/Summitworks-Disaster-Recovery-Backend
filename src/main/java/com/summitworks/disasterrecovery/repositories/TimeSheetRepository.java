@@ -1,14 +1,16 @@
 package com.summitworks.disasterrecovery.repositories;
 
-import java.util.List;
-
+import com.summitworks.disasterrecovery.models.objects.TimeSheetObject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import com.summitworks.disasterrecovery.models.objects.TimeSheetObject;
-import com.summitworks.disasterrecovery.models.users.User;
+import java.util.List;
 
-public interface TimeSheetRepository extends JpaRepository<TimeSheetObject, Long> {
-	@Query(value = "SELECT * from Time_Sheet_Approvals", nativeQuery = true)
+@Repository
+public interface TimeSheetRepository extends JpaRepository<TimeSheetObject, Integer> {
+
+	@Query(value = "SELECT * from time_sheet_approvals", nativeQuery = true)
 	List<TimeSheetObject> getAllTimeSheetObjects();
+
 }

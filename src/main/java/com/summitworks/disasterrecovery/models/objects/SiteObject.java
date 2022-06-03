@@ -1,6 +1,8 @@
 package com.summitworks.disasterrecovery.models.objects;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DiscriminatorOptions;
 
@@ -13,6 +15,8 @@ import javax.persistence.Table;
 @Setter
 @Table(name = "site_code_2")
 @DiscriminatorOptions(force = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class SiteObject {
 
 	@Id
