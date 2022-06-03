@@ -14,11 +14,11 @@ public class TimeSheetService {
 	private final TimeSheetRepository timeSheetRepository;
 
 	public List<TimeSheetObject> getAll() {
-		return timeSheetRepository.getAllTimeSheetObjects();
+		return timeSheetRepository.findAll();
 	}
 
 	public TimeSheetObject getTimesheet(int id) {
-		return timeSheetRepository.getReferenceById(id);
+		return timeSheetRepository.findById(id).get();
 	}
 	
 	public void saveTimesheet(TimeSheetObject timeSheet) {
@@ -31,6 +31,14 @@ public class TimeSheetService {
 
 	public boolean existsByCode(int code) {
 		return timeSheetRepository.existsById(code);
+	}
+
+	public void approveTimesheet(int id) {
+		TimeSheetObject timesheet = getTimesheet(id);
+
+		timesheet.setStatus("Approved");
+
+		saveTimesheet(timesheet);
 	}
 
 }

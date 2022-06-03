@@ -20,4 +20,6 @@ public interface SiteObjectRepository extends JpaRepository<SiteObject, String> 
 
 	List<SiteObject> findAllByCode(String code);
 
+	SiteObject findByCode(String code);
+
 }

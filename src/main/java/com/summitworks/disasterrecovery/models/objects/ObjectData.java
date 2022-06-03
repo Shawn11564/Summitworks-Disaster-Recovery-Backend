@@ -25,4 +25,5 @@ public class ObjectData {
 		this.code = code;
 		this.hoursWorked = hoursWorked;
 	}
+
 }

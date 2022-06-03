@@ -18,12 +18,13 @@ import java.util.*;
 @NoArgsConstructor
 public class TimeSheetObject {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String contractorName;
 	//@Max(25)
 	private String siteCode;
-	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<ObjectData> siteObjects = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY)
+	private Set<ObjectData> siteObject = new HashSet<>();
 	private int totalHours;
 	private String status;
 
@@ -39,10 +40,9 @@ public class TimeSheetObject {
 	}
 
 	public TimeSheetObject(String contractorName, String siteCode, Set<ObjectData> siteObjects) {
-		this.id = new Random().nextInt();
 		this.contractorName = contractorName;
 		this.siteCode = siteCode;
-		this.siteObjects = siteObjects;
+		this.siteObject = siteObjects;
 	}
 
 	public void addSiteObject(SiteObject siteObject, int hoursUsed) {
@@ -50,7 +50,7 @@ public class TimeSheetObject {
 	}
 
 	public void addSiteObject(String siteCode, int hoursUsed) {
-		this.siteObjects.add(new ObjectData(siteCode, hoursUsed));
+		this.siteObject.add(new ObjectData(siteCode, hoursUsed));
 	}
 
 }

@@ -22,7 +22,7 @@ public class SiteObjectService {
 	}
 
 	public SiteObject getSiteObject(String id) {
-		return siteObjectRepository.getReferenceById(id);
+		return siteObjectRepository.findByCode(id);
 	}
 
 	public void saveSiteObject(SiteObject siteObject) {

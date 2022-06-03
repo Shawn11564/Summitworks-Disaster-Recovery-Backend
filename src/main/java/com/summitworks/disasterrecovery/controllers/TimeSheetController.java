@@ -4,6 +4,7 @@ package com.summitworks.disasterrecovery.controllers;
 import com.summitworks.disasterrecovery.controllers.requests.TimesheetReq;
 import com.summitworks.disasterrecovery.controllers.responses.MessageResponse;
 import com.summitworks.disasterrecovery.models.objects.ObjectData;
+import com.summitworks.disasterrecovery.models.objects.SiteObject;
 import com.summitworks.disasterrecovery.models.objects.TimeSheetObject;
 import com.summitworks.disasterrecovery.repositories.ObjectDataRepository;
 import com.summitworks.disasterrecovery.services.SiteObjectService;
@@ -45,6 +46,20 @@ public class TimeSheetController {
 		return timesheetService.getTimesheet(Integer.parseInt(sheetId));
 	}
 
+	@GetMapping("/timesheet/{id}/cost")
+	@RolesAllowed("ADMIN")
+	public double getTimesheetCost(@PathVariable("id") String sheetId) {
+		TimeSheetObject timesheet = timesheetService.getTimesheet(Integer.parseInt(sheetId));
+		double totalCost = 0.0;
+		for (ObjectData objectData : timesheet.getSiteObject()) {
+			SiteObject siteObject = siteObjectService.getSiteObject(objectData.getCode());
+
+			totalCost += siteObject.getHourlyRate() * objectData.getHoursWorked();
+		}
+
+		return totalCost;
+	}
+
 	@PostMapping("/timesheet/{id}/add/{siteObjectId}")
 	@RolesAllowed({"CONTRACTOR", "ADMIN"})
 	public ResponseEntity<?> addSiteObject(@PathVariable("id") String sheetId, @PathVariable("siteObjectId") String siteObjectId) {
@@ -67,14 +82,19 @@ public class TimeSheetController {
 
 	@DeleteMapping("/admin/delete/{id}")
 	@RolesAllowed("ADMIN")
-	public void deleteSiteObject(@PathVariable("id") String sheetId) {
+	public void deleteTimesheet(@PathVariable("id") String sheetId) {
 		timesheetService.deleteTimesheet(Integer.parseInt(sheetId));
+	}
+
+	@PutMapping("/admin/approve/{id}")
+	@RolesAllowed("ADMIN")
+	public void approveTimesheet(@PathVariable("id") String timesheetId) {
+		timesheetService.approveTimesheet(Integer.parseInt(timesheetId));
 	}
 	
 	@PostMapping("/create")
 	@RolesAllowed({"CONTRACTOR", "ADMIN"})
 	public ResponseEntity<?> createTimesheet(@Valid @RequestBody TimesheetReq timesheetrequest) {
-		System.out.println(timesheetrequest.toString());
 		Set<ObjectData> objectData = new HashSet<>(List.of(
 				new ObjectData(timesheetrequest.getJobOneCode(), timesheetrequest.getJobOneHours()),
 				new ObjectData(timesheetrequest.getJobTwoCode(), timesheetrequest.getJobTwoHours()),
@@ -95,6 +115,8 @@ public class TimeSheetController {
 				timesheetrequest.getSiteCode(),
 				objectData
 		);
+
+		timesheet.setStatus("Pending");
 
 		timesheetService.saveTimesheet(timesheet);
 
